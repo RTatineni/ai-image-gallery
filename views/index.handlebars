@@ -1,33 +1,98 @@
-<div id="home">
+
   <div class="container">
     <div class="row">
-      <div class="col-8 offset-2">
-        <h1>{{msg}}</h1>
-        <h2>This is our Home Page!</h2>
-        <form class="clearfix mb-4" action="POST">
-          <div class="form-group">
-            <label for="example-text">Example Text</label>
-            <input type="text" id="example-text" class="form-control" aria-describedby="example-text" placeholder="Enter Example Text">
-          </div>
-          <div class="form-group">
-            <label for="example-description">Example Description</label>
-            <textarea class="form-control" id="example-description" aria-describedby="example-description" placeholder="Enter Example Description"></textarea>
-          </div>
-          <button id="submit" class="btn btn-primary float-right">Submit</button>
-        </form>
-        <h3>Examples:</h3>
-        <ul id="example-list" class="list-group">
-          {{#each examples}}
-          <li data-id="{{this.id}}" class="list-group-item">
-            <a href="example/{{this.id}}">{{this.text}}</a>
-            <button class="btn btn-danger float-right delete">ｘ</button>
-          </li>
-          {{/each}}
-        </ul>
+      <div class="column">
+        <img
+          src="https://mdbootstrap.com/img/Photos/Slides/img%20(130).jpg"
+          style="width:200px;height:200px"
+          class="hover-shadow cursor"
+          data-toggle="modal"
+          data-target="#aaron-modal"
+        />
+      </div>
+      <div class="column">
+        <img
+          src="https://mdbootstrap.com/img/Photos/Slides/img%20(129).jpg"
+          style="width:200px;height:200px"
+          class="hover-shadow cursor"
+          data-toggle="modal"
+          data-target="#aaron-modal"
+        />
+      </div>
+      <div class="column">
+        <img
+          src="https://mdbootstrap.com/img/Photos/Slides/img%20(70).jpg"
+          style="width:200px;height:200px"
+          class="hover-shadow cursor"
+          data-toggle="modal"
+          data-target="#aaron-modal"
+        />
+      </div>
+      <div class="column">
+        <img
+          src="https://mdbootstrap.com/img/Photos/Slides/img%20(80).jpg"
+          style="width:200px;height:200px"
+          class="hover-shadow cursor"
+          data-toggle="modal"
+          data-target="#aaron-modal"
+        />
       </div>
     </div>
   </div>
-</div>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
+    <div
+      class="modal fade"
+      id="aaron-modal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="aaron-modalTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <div class="modal-content">
+          <div class="modal-body">
+            <!-- CAROUSEL -->
+            
+            <div class="carousel-inner">
+    <div class="item active">
+     <img class="img-responsive" src="https://mdbootstrap.com/img/Photos/Slides/img%20(130).jpg" alt="...">
+      <div class="carousel-caption">
+        One Image
+      </div>
+    </div>
+    <div class="item">
+      <img class="img-responsive" src="https://mdbootstrap.com/img/Photos/Slides/img%20(129).jpg" alt="...">
+      <div class="carousel-caption">
+        Another Image
+      </div>
+    </div>
+     <div class="item">
+      <img class="img-responsive" src="https://mdbootstrap.com/img/Photos/Slides/img%20(70).jpg" alt="...">
+      <div class="carousel-caption">
+        Another Image
+      </div>
+    </div>
+    <div class="item">
+      <img class="img-responsive" src="https://mdbootstrap.com/img/Photos/Slides/img%20(80).jpg" alt="...">
+      <div class="carousel-caption">
+        Another Image
+      </div>
+    </div>
+  </div>
+
+  <!-- Controls -->
+  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+  </a>
+  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right"></span>
+  </a>
+</div>
+        <!-- END CAROUSEL -->
+          </div>
+        </div>
+      </div>
+    </div>
