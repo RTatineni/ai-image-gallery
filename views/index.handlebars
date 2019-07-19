@@ -22,12 +22,10 @@
     <div class="row">
       {{#each imgUrls}}
       <div class="column">
-        <img src="{{url}}" style="width:200px;height:200px" class="hover-shadow cursor predictable" data-toggle="modal"
+        <div class="img-wrapper">
+        <img src="{{url}}" style="width:200px;height:200px; object-fit:cover" class="hover-shadow cursor predictable" data-toggle="modal"
           data-target="#aaron-modal" id='img' crossorigin="anonymous" />
-        {{!-- <p id="predict-title-1"> --}}
-
-        </p>
-
+        </div>
       </div>
       {{/each}}
     </div>
