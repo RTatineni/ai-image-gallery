@@ -33,7 +33,7 @@ body {
 
 /* The Modal (background) */
 .modal {
-  display: none;
+  /* display: none; */
   position: fixed;
   z-index: 1;
   padding-top: 100px;
@@ -42,7 +42,7 @@ body {
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: black;
+  /* background-color: black; */
 }
 
 /* Modal Content */
@@ -151,3 +151,4 @@ img.hover-shadow {
   
   z-index: 1;
 }
+
