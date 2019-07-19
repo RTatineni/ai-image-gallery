@@ -1,4 +1,3 @@
-
 {{!-- <form method="POST" action="/api/image-upload" enctype="multipart/form-data">
         <div class="field">
             <label for="image">Image Upload</label>
@@ -9,66 +8,84 @@
 
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+  integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+  integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@0.11.7"> </script>
+<!-- Load the MobileNet model. -->
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet@0.1.1"> </script>
+<script src="/js/clickable.js"></script>
 
 <body>
-    <div class="container">
+  <div class="container">
     <div class="row">
       {{#each imgUrls}}
       <div class="column">
-        <img
-          src="{{url}}"
-          style="width:200px;height:200px"
-          class="hover-shadow cursor"
-          data-toggle="modal"
-          data-target="#aaron-modal"
-        />
+        <img src="{{url}}" style="width:200px;height:200px" class="hover-shadow cursor predictable" data-toggle="modal"
+          data-target="#aaron-modal" id='img' crossorigin="anonymous" />
+        {{!-- <p id="predict-title-1"> --}}
+
+        </p>
+
       </div>
       {{/each}}
     </div>
   </div>
 
-    <div
-      class="modal fade"
-      id="aaron-modal"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="aaron-modalTitle"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <div class="modal-content">
-          <div class="modal-body">
-            <!-- CAROUSEL -->
-      
-      <div class="carousel-inner">
-        <div class="item active">
-          {{#each imgUrls}}
-          <img class="img-responsive" src="{{url}}" alt="...">
-          {{/each}}
-            <div class="carousel-caption">
-              One Image
-            </div>
-        </div>
-    </div>
+  <div class="modal fade" id="aaron-modal" tabindex="-1" role="dialog" aria-labelledby="aaron-modalTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <div class="modal-content">
+        <div class="modal-body">
+          <!-- CAROUSEL -->
 
-  <!-- Controls -->
-  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-    <span class="glyphicon glyphicon-chevron-left"></span>
-  </a>
-  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-    <span class="glyphicon glyphicon-chevron-right"></span>
-  </a>
-  
-</div>
-        <!-- END CAROUSEL -->
+          <div class="carousel-inner">
+            <div class="item active">
+              {{!-- {{#each imgUrls}} --}}
+              <img class="img-responsive" width="845" height="345" src="" alt="...">
+              {{!-- {{/each}} --}}
+              <div class="carousel-caption">
+                <p id="predict-title-1">
+
+              </div>
+            </div>
           </div>
+
+
         </div>
+        <!-- END CAROUSEL -->
       </div>
     </div>
+  </div>
 </body>
+
+
+
+<script type='text/javascript'>
+  // Notice there is no 'import' statement. 'mobilenet' and 'tf' is
+  // available on the index-page because of the script tag above.
+  function classifyImg(img) {
+    //const img = document.getElementById(imgId);
+    // var img = <img id="img" src="https://images-na.ssl-images-amazon.com/images/I/A1cd6TMkAML._SL1500_.jpg"  crossorigin="anonymous"/>
+    //Load the model.
+
+    $(".img-responsive").attr("src", img.src)
+
+    mobilenet.load().then(model => {
+      // Classify the image.
+      model.classify(img).then(predictions => {
+        //console.log('Predictions: ');
+        //console.log(predictions)
+        $("#predict-title-1").text(predictions[0].className)
+        // $(".img-responsive").attr("src",img.src)
+
+        //return predictions[0].className
+      });
+    });
+  }
+
+</script>

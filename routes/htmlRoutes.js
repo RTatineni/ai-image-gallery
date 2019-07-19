@@ -24,9 +24,7 @@ module.exports = function(app) {
       imgUrls.push({url: s3URL})
   
       }
-
       res.render("index", {imgUrls: imgUrls});
-
     })
   })
 
