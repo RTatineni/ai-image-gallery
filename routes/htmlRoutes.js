@@ -7,7 +7,7 @@ module.exports = function(app) {
   // Load index page
 
   app.get("/", function(req,res){
-    var imgUrls = []
+    var imgUrls = [];
    // res.render("index", {imgUrls: imgUrls[0]});
     var params = { 
       Bucket: 'gallery-images-aa',
@@ -18,14 +18,14 @@ module.exports = function(app) {
       if(err)throw err;
       console.log(data);
   
-      for(let i = 0; i <3; i++){
+      for(i in data.Contents){
         var s3URL = "https://gallery-images-aa.s3.amazonaws.com/" + data.Contents[i].Key
    
-      imgUrls.push(s3URL)
+      imgUrls.push({url: s3URL})
   
       }
-      console.log(imgUrls)
-      res.render("index",{imgUrls: imgUrls[0]});
+
+      res.render("index", {imgUrls: imgUrls});
 
     })
   })
