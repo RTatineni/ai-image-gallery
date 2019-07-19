@@ -12,7 +12,9 @@
 <script src="/js/index.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@0.11.7"> </script>
+<!-- Load the MobileNet model. -->
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet@0.1.1"> </script>
 <body>
     <div class="row">
       <div class="column">
@@ -21,7 +23,9 @@
           style="width:200px;height:200px"
           class="hover-shadow cursor"
           data-toggle="modal"
-          data-target="#aaron-modal"
+          data-target="#aaron-modal",
+          crossorigin="anonymous",
+          id ='img'
         />
       </div>
 
@@ -34,7 +38,7 @@
           class="hover-shadow cursor"
           data-toggle="modal"
           data-target="#aaron-modal"
-        />
+        >{{output}}</img>
       </div>
 
     </div>
@@ -159,3 +163,32 @@
         </div>
       </div>
     </div>
+
+
+
+
+
+<!-- Replace this with your image. Make sure CORS settings allow reading the image! -->
+{{!-- <img id="img" src="{{imgUrls}}"  crossorigin="anonymous" ></img> --}}
+<!-- Place your code in the script tag below. You can also use an external .js file -->
+<script crossorigin="anonymous">
+  // Notice there is no 'import' statement. 'mobilenet' and 'tf' is
+  // available on the index-page because of the script tag above.
+  function classifyImg(imgId){
+
+    const img = document.getElementById(imgId);
+ // var img = <img id="img" src="https://images-na.ssl-images-amazon.com/images/I/A1cd6TMkAML._SL1500_.jpg"  crossorigin="anonymous"/>
+   //Load the model.
+    mobilenet.load().then(model => {
+    // Classify the image.
+      model.classify(img).then(predictions => {
+        console.log('Predictions: ');
+
+        console.log(predictions);
+
+      });
+    });
+  }
+
+  classifyImg('img')
+</script>
