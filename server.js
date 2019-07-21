@@ -5,11 +5,13 @@ var exphbs = require("express-handlebars");
 var db = require("./models");
 var app = express();
 const fileRoutes = require("./routes/file-upload")
-
+var cors = require("cors")
 var PORT = process.env.PORT || 3000;
 const bodyParser = require('body-parser');
 
 // Middleware
+app.use(cors());
+app.options('*', cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static("public"));

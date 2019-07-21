@@ -12,9 +12,9 @@
   integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
   integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@0.11.7"> </script>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@0.11.7" > </script>
 <!-- Load the MobileNet model. -->
-<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet@0.1.1"> </script>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet@0.1.1" > </script>
 <script src="/js/clickable.js"></script>
 
 <body>
@@ -46,11 +46,11 @@
           <div class="carousel-inner">
             <div class="item active">
               {{!-- {{#each imgUrls}} --}}
-              <img class="img-responsive" width="845" height="345" src="" alt="...">
+              <img class="img-responsive" width="845" height="345" src="" alt="..." >
               {{!-- {{/each}} --}}
               <div class="carousel-caption">
                 <p id="predict-title-1">
-
+                <p id="predict-title-2">
               </div>
             </div>
           </div>
@@ -74,13 +74,16 @@
     //Load the model.
 
     $(".img-responsive").attr("src", img.src)
+    
+    console.log(img)
 
     mobilenet.load().then(model => {
       // Classify the image.
       model.classify(img).then(predictions => {
         //console.log('Predictions: ');
         //console.log(predictions)
-        $("#predict-title-1").text(predictions[0].className)
+        $("#predict-title-1").text(predictions[0].className+ " with Probability of "+ predictions[0].probability )
+
         // $(".img-responsive").attr("src",img.src)
 
         //return predictions[0].className
