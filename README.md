@@ -1,1 +1,1 @@
-# project-2
+# ai-image-gallery
